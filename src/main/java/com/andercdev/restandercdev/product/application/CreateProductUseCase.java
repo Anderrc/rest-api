@@ -15,9 +15,11 @@ public class CreateProductUseCase {
         this.productRepository = productRepository;
     }
 
-    public Product execute(String name, String description, double price) {
+    public Product execute(String name, String description, double price){
         // Lógica de negocio para la creación de productos (validaciones, reglas de negocio, etc.)
-        Product newProduct = new Product(name, description, price);
-        return productRepository.save(newProduct);
+
+            Product newProduct = new Product(name, description, price);
+            return productRepository.save(newProduct);
+
     }
 }

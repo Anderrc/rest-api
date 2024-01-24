@@ -34,10 +34,11 @@ public class ProductController {
         this.updateProductUseCase = updateProductUseCase;
     }
 
+
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody ProductRequestDTO productRequestDTO) {
-        Product newProduct = createProductUseCase.execute(productRequestDTO.getName(), productRequestDTO.getDescription(), productRequestDTO.getPrice());
-        return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
+    public ResponseEntity<Product> createProduct(@RequestBody ProductRequestDTO productRequestDTO)  {
+            Product newProduct = createProductUseCase.execute(productRequestDTO.getName(), productRequestDTO.getDescription(), productRequestDTO.getPrice());
+            return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -47,7 +48,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Optional<Product>> getProductById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Optional<Product>> getProductById(@PathVariable Long id) {
         Optional<Product> productList = getProductByIdUseCase.execute(id);
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
@@ -65,6 +66,13 @@ public class ProductController {
         private String name;
         private String description;
         private double price;
+
+        public ProductRequestDTO(String name, String description, double price){
+            this.name = name;
+            this.description = description;
+            this.price = price;
+
+        }
 
         public String getName() {
             return this.name;
